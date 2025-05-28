@@ -9,14 +9,14 @@
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.MainController">
    <children>
       <Label layoutX="286.0" layoutY="21.0" text="Vevők nyilvántartása" />
-      <Button fx:id="AddButton" layoutX="31.0" layoutY="322.0" mnemonicParsing="false" onAction="#onClickAddButton" text="Hozzáad" />
-      <Button fx:id="ModifyButton" layoutX="149.0" layoutY="322.0" mnemonicParsing="false" onAction="#onClickModifyButton" text="Módosít" />
-      <Button fx:id="DeleteButton" layoutX="259.0" layoutY="322.0" mnemonicParsing="false" onAction="#onClickDeleteButton" text="Törlés" />
-      <Button fx:id="SaveButton" layoutX="374.0" layoutY="322.0" mnemonicParsing="false" onAction="#onClickSaveButton" text="Mentés" />
-      <ListView fx:id="CustomerListView" layoutX="62.0" layoutY="72.0" onMouseClicked="#onMouseClickedCustomerListView" prefHeight="205.0" prefWidth="200.0" />
+      <Button fx:id="addButton" layoutX="31.0" layoutY="322.0" mnemonicParsing="false" onAction="#onClickAddButton" text="Hozzáad" />
+      <Button fx:id="modifyButton" layoutX="149.0" layoutY="322.0" mnemonicParsing="false" onAction="#onClickModifyButton" text="Módosít" />
+      <Button fx:id="deleteButton" layoutX="259.0" layoutY="322.0" mnemonicParsing="false" onAction="#onClickDeleteButton" text="Törlés" />
+      <Button fx:id="saveButton" layoutX="374.0" layoutY="322.0" mnemonicParsing="false" onAction="#onClickSaveButton" text="Mentés" />
+      <ListView fx:id="customerListView" layoutX="62.0" layoutY="72.0" onMouseClicked="#onMouseClickedCustomerListView" prefHeight="205.0" prefWidth="200.0" />
       <TextField layoutX="445.0" layoutY="322.0" text="Balog Levente, Szoft I-2-E" />
       <Label layoutX="62.0" layoutY="47.0" text="Vevők listája" />
       <Label layoutX="364.0" layoutY="225.0" text="Vevő nevek" />
-      <TextField fx:id="CustomerField" layoutX="430.0" layoutY="221.0" />
+      <TextField fx:id="customerField" layoutX="430.0" layoutY="221.0" />
    </children>
 </Pane>

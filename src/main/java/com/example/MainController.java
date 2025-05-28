@@ -16,10 +16,8 @@ import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
 
@@ -32,10 +30,10 @@ public class MainController {
     private Button addButton;
 
     @FXML
-    private TextField CustomerField;
+    private TextField customerField;
 
     @FXML
-    private ListView<String> CustomerListView;
+    private ListView<String> customerListView;
 
     @FXML
     private Button deleteButton;
@@ -52,7 +50,7 @@ public class MainController {
     void initialize() {
 
         ArrayList<String> customerList = Storage.readuserCustomers();
-        CustomerListView.getItems().addAll(customerList);
+        customerListView.getItems().addAll(customerList);
 
         addButton.disableProperty().bind(editMode);
         deleteButton.disableProperty().bind(editMode);
@@ -60,75 +58,50 @@ public class MainController {
         modifyButton.disableProperty().bind(editMode.not());
     }
 
-    @FXML
-    void onClickAboutButton(ActionEvent event) {
-        Alert alert = new Alert(AlertType.INFORMATION);
-        alert.setTitle("Névjegy");
-        alert.setHeaderText("Vevő névjegye");
-        alert.setContentText("Balog Levente\nI-2-E\n2025-05-24");
-        alert.initOwner(App._stage);
-        alert.show();
-    }
 
     @FXML
     void onClickAddButton(ActionEvent event) {
-        String customer = CustomerField.getText();
-        if (customer.isEmpty()) {
-            Alert alert = new Alert(AlertType.ERROR);
-            alert.setTitle("Hiba!");
-            alert.setHeaderText("Bemeneti hiba!");
-            alert.setContentText("A névjegy nem lehet üres!");
-            alert.initOwner(App._stage);
-            alert.show();
-            return;
-        }
-        CustomerListView.getItems().add(customer);
-        CustomerField.setText("");
+        String customer = customerField.getText();
+    
+        customerListView.getItems().add(customer);
+        customerField.setText("");
     }
 
     @FXML
     void onClickDeleteButton(ActionEvent event) {
-        int index = CustomerListView.getSelectionModel().getSelectedIndex();
-        if (index == -1) {
-            Alert alert = new Alert(AlertType.ERROR);
-            alert.setTitle("Hiba!");
-            alert.setHeaderText("Kiválasztási hiba!");
-            alert.setContentText("Nincs kiválsztva vevő!");
-            alert.initOwner(App._stage);
-            alert.show();
-            return;
-        }
-        CustomerListView.getItems().remove(index);
+        int index = customerListView.getSelectionModel().getSelectedIndex();
+        
+        customerListView.getItems().remove(index);
     }
 
     @FXML
     void onClickModifyButton(ActionEvent event) {
-        String customer = CustomerField.getText();
+        String customer = customerField.getText();
         if (customer.isEmpty()) {
             return;
         }
-        int index = CustomerListView.getSelectionModel().getSelectedIndex();
-        CustomerListView.getItems().set(index, customer);
-        CustomerField.setText("");
-        CustomerListView.setDisable(false);
+        int index = customerListView.getSelectionModel().getSelectedIndex();
+        customerListView.getItems().set(index, customer);
+        customerField.setText("");
+        customerListView.setDisable(false);
         editMode.set(false);
 
     }
 
     @FXML
     void onClickSaveButton(ActionEvent event) {
-        ArrayList<String> customerList = new ArrayList<>(CustomerListView.getItems());
+        ArrayList<String> customerList = new ArrayList<>(customerListView.getItems());
 
-        CustomerListView.getItems();
+        customerListView.getItems();
         Storage.writeCities(customerList);
     }
 
     @FXML
     void onMouseClickedCustomerListView(MouseEvent event) {
         if (event.getClickCount() == 2) {
-            String selected = CustomerListView.getSelectionModel().getSelectedItem();
-            CustomerField.setText(selected);
-            CustomerListView.setDisable(true);
+            String selected = customerListView.getSelectionModel().getSelectedItem();
+            customerField.setText(selected);
+            customerListView.setDisable(true);
             editMode.set(true);
 
         }
